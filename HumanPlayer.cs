@@ -33,9 +33,11 @@ namespace juegoIA
 		{
 			int carta = 0;
 			Console.WriteLine("Naipes disponibles (Usuario):");
-			for (int i = 0; i < naipes.Count; i++) {
+			for (int i = 0; i < naipes.Count; i++) 
+			{
 				Console.Write(naipes[i].ToString());
-				if (i<naipes.Count-1) {
+				if (i<naipes.Count-1) 
+				{
 					Console.Write(", ");
 				}
 			}
