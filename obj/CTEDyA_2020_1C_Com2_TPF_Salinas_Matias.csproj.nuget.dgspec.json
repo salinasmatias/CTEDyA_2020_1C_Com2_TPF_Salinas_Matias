@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/konta/Desktop/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias.csproj": {}
+  },
+  "projects": {
+    "/home/konta/Desktop/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/konta/Desktop/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias.csproj",
+        "projectName": "CTEDyA_2020_1C_Com2_TPF_Salinas_Matias",
+        "projectPath": "/home/konta/Desktop/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias.csproj",
+        "packagesPath": "/home/konta/.nuget/packages/",
+        "outputPath": "/home/konta/Desktop/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/CTEDyA_2020_1C_Com2_TPF_Salinas_Matias/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/konta/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
