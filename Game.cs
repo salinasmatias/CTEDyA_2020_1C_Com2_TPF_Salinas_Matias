@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using tp1;
 namespace juegoIA
 {
 
@@ -18,7 +18,7 @@ namespace juegoIA
 		private List<int> naipesComputer = new List<int>();
 		private int limite;
 		private bool juegaHumano = false;
-		
+		private static ArbolGeneral<int> estado;
 		
 		public Game()
 		{
@@ -83,6 +83,25 @@ namespace juegoIA
 			this.printWinner();
 		}
 		
-		
+		private void setEstado(int carta)
+        {
+            foreach (var nodo in estado.getHijos())
+            {
+                if (nodo.getDatoRaiz() == carta)
+                {
+                    estado = nodo;
+                }
+            }
+        }
+
+        public static void setEstadoInicial(ArbolGeneral<int> raiz)
+        {
+            estado = raiz;
+        }
+
+        public static ArbolGeneral<int> getEstado()
+        {
+            return estado;
+        }
 	}
 }
