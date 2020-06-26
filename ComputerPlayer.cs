@@ -117,14 +117,36 @@ namespace juegoIA
 		
 		public override int descartarUnaCarta()
 		{
-			//Implementar
-			return 0;
+			//Me fijo cuál es la función heurística de cada hijo del estado
+            //Si hay alguna que sea 1, retorno esa carta
+
+            foreach (var nodo in this.estado.getHijos())
+            {
+                int func = nodo.getFuncRaiz();
+                if (func == 1)
+                {
+                    int cartax = nodo.getDatoRaiz();
+                    cartaDelOponente(cartax);
+                    Console.WriteLine("La PC juega = " + cartax);
+                    return cartax;
+                }
+            }
+            //Sinó retorno la primera de la lista
+            int carta = this.estado.getHijos()[0].getDatoRaiz();
+            cartaDelOponente(carta);
+            Console.WriteLine("La PC juega = " + carta);
+            return carta;
 		}
 		
 		public override void cartaDelOponente(int carta)
 		{
-			//implementar
-			
+			foreach (var nodo in this.estado.getHijos())
+            {
+                if (nodo.getDatoRaiz() == carta)
+                {
+                    this.estado = nodo;
+                }
+            }
 		}
 		
 	}

@@ -5,15 +5,12 @@ using System.Linq;
 
 
 namespace juegoIA
-{
-
-	public class HumanPlayer : Jugador
+{	public class HumanPlayer : Jugador
 	{
 		private List<int> naipes = new List<int>();
 		private List<int> naipesComputer = new List<int>();
 		private int limite;
 		private bool random_card = false;
-		
 		
 		public HumanPlayer(){}
 		
@@ -33,27 +30,32 @@ namespace juegoIA
 		{
 			int carta = 0;
 			Console.WriteLine("Naipes disponibles (Usuario):");
-			for (int i = 0; i < naipes.Count; i++) 
-			{
+			for (int i = 0; i < naipes.Count; i++) {
 				Console.Write(naipes[i].ToString());
-				if (i<naipes.Count-1) 
-				{
+				if (i<naipes.Count-1) {
 					Console.Write(", ");
 				}
 			}
 		
 			Console.WriteLine();
 			if (!random_card) {
-				Console.Write("Ingrese naipe:");
+				Console.Write("Ingrese naipe o consulta:");
 				string entrada = Console.ReadLine();
-				
-				Int32.TryParse(entrada, out carta);
+
+                consultas(entrada);
+
+                Int32.TryParse(entrada, out carta);
 				while (!naipes.Contains(carta)) {
-					Console.Write("Opcion Invalida.Ingrese otro naipe:");
+					Console.Write("Ingrese naipe o consulta:");
 					entrada = Console.ReadLine();
-					Int32.TryParse(entrada, out carta);
+
+                    consultas(entrada);
+                    
+                    Int32.TryParse(entrada, out carta);
 				}
-			} else {
+			} 
+			else 
+			{
 				var random = new Random();
 				int index = random.Next(naipes.Count);
 				carta = naipes[index];
@@ -65,6 +67,49 @@ namespace juegoIA
 		
 		public override void cartaDelOponente(int carta){
 		}
-		
-	}
+
+        public void consultas(string entrada)
+        {
+
+            switch (entrada)
+            {
+                case "r":
+				string[] ke;
+                ke = new string[1];
+                Juego.Main(ke);
+                break;
+				
+				case "a":
+                Game.getEstado().porNiveles();
+				break;
+
+                case "b": 
+				//Pedir 6 nuevas cartas al usuario y crear nuevo arbol
+				int condicion = 1;
+            	int nuevacarta;
+                List<int> jugada = new List<int>();
+                while (condicion ==6)
+                {
+                    Menu menu = new Menu();
+                    menu.submenuB();
+                    nuevacarta = int.Parse(Console.ReadLine());
+                    jugada.Add(nuevacarta);
+                    condicion++;
+                }
+				
+				Console.WriteLine(Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()));
+                break;
+
+                case "c":
+				Console.Write("\n" + "Inserte la profundidad (Menor o igual a " + Game.getEstado().altura() + ") =");                    
+                int profundidad = Int32.Parse(Console.ReadLine());
+                Game.getEstado().porNivel(profundidad);
+				break;
+            }
+        }
+    }
+
+
+
 }
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using juegoIA;
 
 namespace tp1
 {
@@ -258,7 +259,7 @@ namespace tp1
 			}
 		}
 
-		  public string recorridoDeJugada(List<int> jugada, ArbolGeneral<int> estado)
+		public string recorridoDeJugada(List<int> jugada, ArbolGeneral<int> estado)
         {
             if (jugada.Count == 0)
             {
@@ -287,6 +288,56 @@ namespace tp1
                     }
                 }
                 return "Esa jugada no existe";
+            }
+        }
+
+		public void porNivel(int nivel)
+        {
+            if (nivel > Game.getEstado().altura())
+            {
+                Console.WriteLine("Profundidad inválida.\n" +
+                    "");
+                return;
+            }
+            Cola<ArbolGeneral<T>> c = new Cola<ArbolGeneral<T>>();
+            ArbolGeneral<T> arbolAux;
+            
+            int nivelactual = 0;
+            c.encolar(this);
+            c.encolar(null);
+
+            while (!c.esVacia())
+            {
+                arbolAux = c.desencolar();
+                if (arbolAux == null)
+                {
+                    nivelactual += 1;
+                    c.encolar(null);
+                    if (nivelactual > nivel)
+                    {
+                        Console.WriteLine("");
+                        break;
+                    }
+                }
+                else
+                {
+                    if (!this.esHoja())
+                    {
+                        foreach (var hijo in arbolAux.getHijos())
+                        {
+                            c.encolar(hijo);
+                        }
+                    }
+                    if (nivelactual == nivel)
+                    {
+                        Console.Write(arbolAux.getDatoRaiz() + " ");                        
+                    }                    
+                    if (nivelactual > nivel)
+                    {
+                        Console.WriteLine("");
+                        return;
+                    }                    
+                }
             }
         }
 	}
