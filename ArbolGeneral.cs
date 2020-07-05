@@ -49,14 +49,14 @@ namespace tp1
 			return this.raiz != null && this.getHijos().Count == 0;
 		}
 
-		public int getFuncRaiz()
+		public int getFuncionHeuristicaRaiz()
         {
-            return this.getRaiz().getFunc();
+            return this.getRaiz().getFuncionHeuristica();
         }
 
-        public void setFuncRaiz(int func)
+        public void setFuncionHeuristica(int funcion)
         {
-            this.getRaiz().setFunc(func);
+            this.getRaiz().setFuncionHeuristica(funcion);
         }
 	
 		public int altura() {
@@ -263,13 +263,13 @@ namespace tp1
         {
             if (jugada.Count == 0)
             {
-                if (estado.getFuncRaiz() == 1)
+                if (estado.getFuncionHeuristicaRaiz() == 1)
                 {
-                    return "Gana pc";
+                    return "Gana la IA";
                 }
                 else
                 {
-                    return "Gana humano";
+                    return "Gana el humano";
                 }
 
             }

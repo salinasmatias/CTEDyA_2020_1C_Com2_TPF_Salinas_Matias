@@ -9,7 +9,7 @@ namespace juegoIA
         public void menuPrincipal()
         {
             Console.Clear();
-            Console.WriteLine("                              Juego de cartas                                 \n" +
+            Console.WriteLine("                              Juego de Cartas                                 \n" +
                    "\n" +
                    "\n");
                    
@@ -17,11 +17,11 @@ namespace juegoIA
 
         public void menuConsultas()
         {
-            Console.WriteLine("Consultas in game\n"+
-            "a - Imprimir todos los posibles resultados.\n" +
-            "b - Ingresar jugadas para obtener resultado.\n" +
-            "c - Ingrese una profundidad para obtener las distintas jugadas.\n" +
-            "r - Reiniciar el programa.\n" +
+            Console.WriteLine("Consultas in-game\n"+
+            "a) Imprimir todos los posibles resultados.\n" +
+            "b) Ingresar jugadas para obtener resultado.\n" +
+            "c) Ingrese una profundidad para obtener las posibles jugadas.\n" +
+            "r) Reiniciar el programa.\n" +
             "");
 
         }

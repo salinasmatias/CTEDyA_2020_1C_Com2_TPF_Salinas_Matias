@@ -12,19 +12,13 @@ namespace tp1
 		private List<NodoGeneral<T>> hijos;
 		
 		//(1 gana pc, -1 gana humano)
-        private int func;
-        private string v;
+        private int funcionHeuristica;
 		
 		public NodoGeneral(T dato){		
 			this.dato = dato;
 			this.hijos = new List<NodoGeneral<T>>();
 		}
 
-		public NodoGeneral(string v)
-        {
-            this.v = v;
-        }
-	
 		public T getDato(){		
 			return this.dato; 
 		}
@@ -41,14 +35,14 @@ namespace tp1
 			this.hijos = hijos;
 		}
 
-		public int getFunc()
+		public int getFuncionHeuristica()
         {
-            return this.func;
+            return this.funcionHeuristica;
         }
 
-        public void setFunc(int func)
+        public void setFuncionHeuristica(int funcionHeuristica)
         {
-            this.func = func;
+            this.funcionHeuristica = funcionHeuristica;
         }
 	
 	}

@@ -34,7 +34,6 @@ namespace juegoIA
 			}
 			player1.incializar(naipesComputer, naipesHuman, limite);
 			player2.incializar(naipesHuman, naipesComputer, limite);
-			
 		}
 		
 		
@@ -58,9 +57,9 @@ namespace juegoIA
 		private void printWinner()
 		{
 			if (!juegaHumano) {
-				Console.WriteLine("Gano el Ud");
+				Console.WriteLine("¡Ganaste!");
 			} else {
-				Console.WriteLine("Gano Computer");
+				Console.WriteLine("Ganó la IA");
 			}
 			
 		}

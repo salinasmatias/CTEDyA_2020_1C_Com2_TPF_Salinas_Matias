@@ -15,7 +15,9 @@ namespace juegoIA
 		{
 		}
 		
-		public override void  incializar(List<int> cartasPropias, List<int> cartasOponente, int limite)
+		
+        //Método inicializar crea árbol general con todos los estados posibles
+        public override void  incializar(List<int> cartasPropias, List<int> cartasOponente, int limite)
 		{
 			this.raiz = new ArbolGeneral<int>(0);
             this.estado = raiz;            
@@ -64,12 +66,12 @@ namespace juegoIA
 
                         //Asigno función heurística a cada nodo cuando vuelvo de la recursión
                         List<ArbolGeneral<int>> hijos = raiz.getHijos();
-                        raiz.setFuncRaiz(-1);
+                        raiz.setFuncionHeuristica(-1);
                         foreach (var h in hijos)
                         {
-                            if (h.getFuncRaiz() == 1)
+                            if (h.getFuncionHeuristicaRaiz() == 1)
                             {
-                                raiz.setFuncRaiz(1);
+                                raiz.setFuncionHeuristica(1);
                                 break;
                             }
                         }
@@ -82,12 +84,12 @@ namespace juegoIA
 
                         //Asigno función heurística a cada nodo cuando vuelvo de la recursión
                         List<ArbolGeneral<int>> hijos = raiz.getHijos();
-                        raiz.setFuncRaiz(-1);
+                        raiz.setFuncionHeuristica(-1);
                         foreach (var h in hijos)
                         {
-                            if (h.getFuncRaiz() == 1)
+                            if (h.getFuncionHeuristicaRaiz() == 1)
                             {
-                                raiz.setFuncRaiz(1);
+                                raiz.setFuncionHeuristica(1);
                                 break;
                             }
                         }
@@ -103,11 +105,11 @@ namespace juegoIA
 
                     if (turno == true)
                     {
-                        hijo.setFuncRaiz(1);
+                        hijo.setFuncionHeuristica(1);
                     }
                     else
                     {
-                        hijo.setFuncRaiz(-1);
+                        hijo.setFuncionHeuristica(-1);
                     }
                 }
             }
@@ -122,19 +124,19 @@ namespace juegoIA
 
             foreach (var nodo in this.estado.getHijos())
             {
-                int func = nodo.getFuncRaiz();
+                int func = nodo.getFuncionHeuristicaRaiz();
                 if (func == 1)
                 {
-                    int cartax = nodo.getDatoRaiz();
-                    cartaDelOponente(cartax);
-                    Console.WriteLine("La PC juega = " + cartax);
-                    return cartax;
+                    int cartaaux = nodo.getDatoRaiz();
+                    cartaDelOponente(cartaaux);
+                    Console.WriteLine("La IA juega = " + cartaaux);
+                    return cartaaux;
                 }
             }
             //Sinó retorno la primera de la lista
             int carta = this.estado.getHijos()[0].getDatoRaiz();
             cartaDelOponente(carta);
-            Console.WriteLine("La PC juega = " + carta);
+            Console.WriteLine("La IA juega = " + carta);
             return carta;
 		}
 		
