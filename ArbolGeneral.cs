@@ -284,7 +284,6 @@ namespace tp1
                         jugadaaux.AddRange(jugada);
                         jugadaaux.RemoveAt(0);
                         recorridoDeJugada(jugadaaux, hijo);
-
                     }
                 }
                 return "Esa jugada no existe";
@@ -330,7 +329,7 @@ namespace tp1
                     }
                     if (nivelactual == nivel)
                     {
-                        Console.Write(arbolAux.getDatoRaiz() + " ");                        
+                        Console.Write("({0},{1})", arbolAux.getDatoRaiz(), arbolAux.getFuncionHeuristicaRaiz());                        
                     }                    
                     if (nivelactual > nivel)
                     {

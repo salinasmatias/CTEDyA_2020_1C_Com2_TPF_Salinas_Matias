@@ -36,6 +36,13 @@ namespace juegoIA
 					Console.Write(", ");
 				}
 			}
+			Console.WriteLine("\n\nNaipes disponibles (IA):");
+			for (int i = 0; i < naipesComputer.Count; i++) {
+				Console.Write(naipesComputer[i].ToString());
+				if (i<naipesComputer.Count-1) {
+					Console.Write(", ");
+				}
+			}
 		
 			Console.WriteLine();
 			if (!random_card) {
@@ -88,7 +95,7 @@ namespace juegoIA
 				int condicion = 1;
             	int nuevacarta;
                 List<int> jugada = new List<int>();
-                while (condicion ==6)
+                while (condicion <= this.naipes.Count)
                 {
                     Menu menu = new Menu();
                     menu.submenuB();

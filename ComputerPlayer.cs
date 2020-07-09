@@ -27,44 +27,44 @@ namespace juegoIA
 
 		private void _inicializar(List<int> cartasPropias, List<int> cartasOponente, int limite, bool turno, ArbolGeneral<int> raiz)
         {
-            //Creo una lista de cartas auxiliar para no modificar las originales
-            List<int> cartas = new List<int>();
+            //Creo una lista de cards auxiliar para no modificar las originales
+            List<int> cards = new List<int>();
 
-            if (turno == true) //Turno del humano
+            if (turno == true) //Human turn
             {                
-                cartas.AddRange(cartasOponente);                
+                cards.AddRange(cartasOponente);                
             }
-            else //Turno de la pc
+            else //AI Turn
             {                
-                cartas.AddRange(cartasPropias);                      
+                cards.AddRange(cartasPropias);                      
             }
             
-            //Para cada carta
-            foreach (var carta in cartas)
+            //Para cada card
+            foreach (var card in cards)
             {
-                //Creo un arbol auxiliar con la carta como dato
-                ArbolGeneral<int> hijo = new ArbolGeneral<int>(carta);
+                //Creo un arbol auxiliar con la card como dato
+                ArbolGeneral<int> hijo = new ArbolGeneral<int>(card);
 
                 //Agrego el arbol auxiliar como hijo de la raíz
                 raiz.agregarHijo(hijo);
 
                 //Disminuyo el limite
-                int limiteaux = limite - carta;
+                int limiteaux = limite - card;
 
-                //Creo una lista de cartas auxiliar para eliminar la carta sin perder información de la lista "cartas"
-                List<int> cartasrestantes = new List<int>();
-                cartasrestantes.AddRange(cartas);                
-                cartasrestantes.Remove(carta);                
+                //Creo una lista de cards auxiliar para eliminar la card sin perder información de la lista "cards"
+                List<int> cartasRestantes = new List<int>();
+                cartasRestantes.AddRange(cards);                
+                cartasRestantes.Remove(card);                
                 
                 //Si el límite es mayor o igual a 0 sigo agregando hijos a los subárboles
                 if (limiteaux >= 0)
                 {
-                    //Si es el turno del humano, llamo recursivamente a la funcion con la lista de cartas auxiliares como nueva lista de cartas del humano.
+                    //Si es el turno del humano, llamo recursivamente a la funcion con la lista de cards auxiliares como nueva lista de cards del humano.
                     if (turno == true)
                     {
-                        _inicializar(cartasPropias, cartasrestantes, limiteaux, !turno, hijo);
+                        _inicializar(cartasPropias, cartasRestantes, limiteaux, !turno, hijo);
 
-                        //Asigno función heurística a cada nodo cuando vuelvo de la recursión
+                        //Asignamos función heurística a cada nodo cuando volvemos de la recursión
                         List<ArbolGeneral<int>> hijos = raiz.getHijos();
                         raiz.setFuncionHeuristica(-1);
                         foreach (var h in hijos)
@@ -77,19 +77,19 @@ namespace juegoIA
                         }
                     }
 
-                    //Si es el turno de la pc, llamo recursivamente a la funcion con la lista de cartas auxiliares como nueva lista de cartas de la pc.
+                    //Si es el turno de la IA, llamamos a la función recursivamente con la lista de cartas auxiliares como nueva lista de cartas de la IA.
                     else
                     {
-                        _inicializar(cartasrestantes, cartasOponente, limiteaux, !turno, hijo);
+                        _inicializar(cartasRestantes, cartasOponente, limiteaux, !turno, hijo);
 
-                        //Asigno función heurística a cada nodo cuando vuelvo de la recursión
+                        //Asignamos función heurística a cada nodo cuando volvemos de la recursión.
                         List<ArbolGeneral<int>> hijos = raiz.getHijos();
-                        raiz.setFuncionHeuristica(-1);
+                        raiz.setFuncionHeuristica(1);
                         foreach (var h in hijos)
                         {
-                            if (h.getFuncionHeuristicaRaiz() == 1)
+                            if (h.getFuncionHeuristicaRaiz() == -1)
                             {
-                                raiz.setFuncionHeuristica(1);
+                                raiz.setFuncionHeuristica(-1);
                                 break;
                             }
                         }
@@ -99,9 +99,9 @@ namespace juegoIA
                 //Si se pasó el límite
                 else
                 {
-                    //Asigno función heurística a cada hoja
+                    //Asignamos función heurística a cada hoja
                     
-                    //(1 gana pc ; -1 gana humano)
+                    //(1 IA Gana ; -1 Human Gana)
 
                     if (turno == true)
                     {
@@ -119,25 +119,37 @@ namespace juegoIA
 		
 		public override int descartarUnaCarta()
 		{
-			//Me fijo cuál es la función heurística de cada hijo del estado
-            //Si hay alguna que sea 1, retorno esa carta
-
+			//Me fijo cuál es la función heurística de cada child del estado
+            //Si hay alguna que sea 1, retorno esa card
+            
             foreach (var nodo in this.estado.getHijos())
             {
                 int func = nodo.getFuncionHeuristicaRaiz();
-                if (func == 1)
+                if (func == 0)
                 {
-                    int cartaaux = nodo.getDatoRaiz();
-                    cartaDelOponente(cartaaux);
-                    Console.WriteLine("La IA juega = " + cartaaux);
-                    return cartaaux;
+                    int cartax = nodo.getDatoRaiz();
+                    cartaDelOponente(cartax);
+                    Console.WriteLine("\nLa IA juega = {0}" ,cartax);
+                    return cartax;
+                }
+            }
+            
+            foreach (var nodo in this.estado.getHijos())
+            {
+                int func = nodo.getFuncionHeuristicaRaiz();
+                if(func ==1)
+                {
+                    int cartax = nodo.getDatoRaiz();
+                    cartaDelOponente(cartax);
+                    Console.WriteLine("\nLa IA juega = {0}" ,cartax);
+                    return cartax;
                 }
             }
             //Sinó retorno la primera de la lista
-            int carta = this.estado.getHijos()[0].getDatoRaiz();
-            cartaDelOponente(carta);
-            Console.WriteLine("La IA juega = " + carta);
-            return carta;
+            int card = this.estado.getHijos()[0].getDatoRaiz();
+            cartaDelOponente(card);
+            Console.WriteLine("La IA juega = " + card);
+            return card;
 		}
 		
 		public override void cartaDelOponente(int carta)
@@ -150,6 +162,5 @@ namespace juegoIA
                 }
             }
 		}
-		
 	}
 }
