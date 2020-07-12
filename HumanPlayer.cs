@@ -100,6 +100,11 @@ namespace juegoIA
                     Menu menu = new Menu();
                     menu.submenuB();
                     nuevacarta = int.Parse(Console.ReadLine());
+					if(nuevacarta == 13)
+					{
+						Console.WriteLine("Cancelando consulta.");
+						return;
+					}
                     jugada.Add(nuevacarta);
                     condicion++;
                 }
