@@ -259,35 +259,22 @@ namespace tp1
 			}
 		}
 
-		public string recorridoDeJugada(List<int> jugada, ArbolGeneral<int> estado)
+		public ArbolGeneral<int> recorridoDeJugada(List<int> jugada, ArbolGeneral<int> estado)
         {
-            if (jugada.Count == 0)
-            {
-                if (estado.getFuncionHeuristicaRaiz() == 1)
-                {
-                    return "Gana la IA";
-                }
-                else
-                {
-                    return "Gana el humano";
-                }
 
-            }
-            else
-            {
-                List<ArbolGeneral<int>> hijos = estado.getHijos();
-                foreach (var hijo in hijos)
-                {
-                    if (hijo.getDatoRaiz() == jugada[0])
-                    {
-                        List<int> jugadaaux = new List<int>();
-                        jugadaaux.AddRange(jugada);
-                        jugadaaux.RemoveAt(0);
-                        recorridoDeJugada(jugadaaux, hijo);
-                    }
-                }
-                return "Esa jugada no existe";
-            }
+			ArbolGeneral<int> current = estado;
+			foreach (int card in jugada)
+			{
+				foreach (var subtree in current.getHijos())
+				{
+					if(subtree.getDatoRaiz() == card)
+					{
+						current = subtree;
+						break;
+					}
+				}
+			}
+			return current;
         }
 
 		public void porNivel(int nivel)

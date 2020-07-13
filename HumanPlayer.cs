@@ -91,7 +91,6 @@ namespace juegoIA
 				break;
 
                 case "b": 
-				//Pedir 6 nuevas cartas al usuario y crear nuevo arbol
 				int condicion = 1;
             	int nuevacarta;
                 List<int> jugada = new List<int>();
@@ -102,14 +101,12 @@ namespace juegoIA
                     nuevacarta = int.Parse(Console.ReadLine());
 					if(nuevacarta == 13)
 					{
-						Console.WriteLine("Cancelando consulta.");
-						return;
+						break;
 					}
-                    jugada.Add(nuevacarta);
+					jugada.Add(nuevacarta);
                     condicion++;
                 }
-				
-				Console.WriteLine(Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()));
+				Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()).porNiveles();
                 break;
 
                 case "c":

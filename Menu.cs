@@ -19,7 +19,7 @@ namespace juegoIA
         {
             Console.WriteLine("Consultas in-game\n"+
             "a) Imprimir todos los posibles resultados.\n" +
-            "b) Ingresar jugadas para obtener resultado.\n" +
+            "b) Ingresar jugadas para obtener posibles resultados.\n" +
             "c) Ingrese una profundidad para obtener las posibles jugadas.\n" +
             "r) Reiniciar el programa.\n" +
             "");
