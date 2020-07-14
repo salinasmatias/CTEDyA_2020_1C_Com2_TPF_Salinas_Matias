@@ -48,10 +48,12 @@ namespace juegoIA
 			if (!random_card) {
 				Console.Write("Ingrese naipe o consulta:");
 				string entrada = Console.ReadLine();
-
-                consultas(entrada);
-
-                Int32.TryParse(entrada, out carta);
+				if(Char.IsLetter(entrada, 0))
+				{
+					consultas(entrada); //Si el valor de entrada es una opción válida de consultas, se ejecuta la consulta que corresponde.
+				}
+                
+                Int32.TryParse(entrada, out carta); //Sino, se intenta parsear el valor de entrada.
 				while (!naipes.Contains(carta)) {
 					Console.Write("Ingrese naipe o consulta:");
 					entrada = Console.ReadLine();
@@ -83,6 +85,7 @@ namespace juegoIA
                 case "r":
 				string[] ke;
                 ke = new string[1];
+				Console.Clear();
                 Juego.Main(ke);
                 break;
 				

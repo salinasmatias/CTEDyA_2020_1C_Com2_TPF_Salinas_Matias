@@ -80,6 +80,7 @@ namespace juegoIA
 				}
 			}
 			this.printWinner();
+			return;
 		}
 		
 		private void setEstado(int carta)
