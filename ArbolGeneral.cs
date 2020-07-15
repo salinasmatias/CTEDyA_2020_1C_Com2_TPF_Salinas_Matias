@@ -277,6 +277,18 @@ namespace tp1
 				{
 					Console.Write("({0}, {1})", node.getDato(), node.getFuncionHeuristica());
 				}
+				if(auxList[auxList.Count-1].getFuncionHeuristica()==1)
+				{
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine(" IA Wins");
+					Console.ResetColor();
+				}
+				else
+				{
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine(" Human Wins");
+					Console.ResetColor();
+				}
 				Console.Write("\n");
 			}
 			
