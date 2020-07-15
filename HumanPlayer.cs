@@ -90,7 +90,7 @@ namespace juegoIA
                 break;
 				
 				case "a":
-                Game.getEstado().porNiveles();
+                Game.getEstado().recorridoDeCaminos();
 				break;
 
                 case "b": 

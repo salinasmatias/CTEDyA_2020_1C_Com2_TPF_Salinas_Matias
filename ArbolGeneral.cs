@@ -259,6 +259,33 @@ namespace tp1
 			}
 		}
 
+		public void recorridoDeCaminos()
+		{
+			List<NodoGeneral<T>> lista = new List<NodoGeneral<T>>();
+			caminos(lista);
+		}
+
+		private void caminos(List<NodoGeneral<T>>list)
+		{
+			List<NodoGeneral<T>> auxList = new List<NodoGeneral<T>>();
+			auxList.AddRange(list);
+			auxList.Add(this.getRaiz());
+			
+			if(this.esHoja())
+			{
+				foreach (var node in auxList)
+				{
+					Console.Write("({0}, {1})", node.getDato(), node.getFuncionHeuristica());
+				}
+				Console.Write("\n");
+			}
+			
+			foreach (var node in this.getHijos())
+			{
+				node.caminos(auxList);	
+			}
+		}	       
+
 		public ArbolGeneral<int> recorridoDeJugada(List<int> jugada, ArbolGeneral<int> estado)
         {
 

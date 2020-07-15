@@ -48,6 +48,7 @@ namespace juegoIA
 			int carta = jugador.descartarUnaCarta();
 			naipes.Remove(carta);
 			limite -= carta;
+			setEstado(carta);
 			oponente.cartaDelOponente(carta);
 			juegaHumano = !juegaHumano;
 		}
