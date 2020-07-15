@@ -280,13 +280,13 @@ namespace tp1
 				if(auxList[auxList.Count-1].getFuncionHeuristica()==1)
 				{
 					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine(" IA Wins");
+					Console.WriteLine(" Gana la IA");
 					Console.ResetColor();
 				}
 				else
 				{
 					Console.ForegroundColor = ConsoleColor.Blue;
-					Console.WriteLine(" Human Wins");
+					Console.WriteLine(" Gana el Humano");
 					Console.ResetColor();
 				}
 				Console.Write("\n");
@@ -300,27 +300,51 @@ namespace tp1
 
 		public ArbolGeneral<int> recorridoDeJugada(List<int> jugada, ArbolGeneral<int> estado)
         {
-
+			bool valid_squence=false;
 			ArbolGeneral<int> current = estado;
-			foreach (int card in jugada)
+			try
 			{
-				foreach (var subtree in current.getHijos())
+				foreach (int card in jugada)
 				{
-					if(subtree.getDatoRaiz() == card)
+					valid_squence = false;
+					foreach (var subtree in current.getHijos())
 					{
-						current = subtree;
-						break;
+						if(subtree.getDatoRaiz() == card)
+						{
+							current = subtree;
+							valid_squence = true;
+							break;
+						}
+					}
+					if(!valid_squence)
+					{
+						throw new Exception();
 					}
 				}
 			}
+			catch (System.Exception)
+			{
+				Console.WriteLine("La secuencia ingresada es invalida");
+				current = new ArbolGeneral<int>(0);
+			}
+			//si la jugada es inválida, devolver un error.
 			return current;
         }
 
 		public void porNivel(int nivel)
         {
-            if (nivel > Game.getEstado().altura())
+            if(nivel%2==0)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Blue;
+			}
+			if (nivel > Game.getEstado().altura())
             {
-                Console.WriteLine("Profundidad inválida.\n" +
+                Console.ResetColor();
+				Console.WriteLine("Profundidad inválida.\n" +
                     "");
                 return;
             }
@@ -355,7 +379,7 @@ namespace tp1
                     }
                     if (nivelactual == nivel)
                     {
-                        Console.Write("({0},{1})", arbolAux.getDatoRaiz(), arbolAux.getFuncionHeuristicaRaiz());                        
+                        Console.Write("({0},{1})", arbolAux.getDatoRaiz(), arbolAux.getFuncionHeuristicaRaiz());
                     }                    
                     if (nivelactual > nivel)
                     {
@@ -364,6 +388,7 @@ namespace tp1
                     }                    
                 }
             }
+			Console.ResetColor();
         }
 	}
 }

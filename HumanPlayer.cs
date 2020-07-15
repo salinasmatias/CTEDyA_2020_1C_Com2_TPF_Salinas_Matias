@@ -109,13 +109,28 @@ namespace juegoIA
 					jugada.Add(nuevacarta);
                     condicion++;
                 }
-				Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()).porNiveles();
+				if(!Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()).esHoja())
+				{
+					Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()).recorridoDeCaminos();
+				}
                 break;
 
                 case "c":
 				Console.Write("\n" + "Inserte la profundidad (Menor o igual a " + Game.getEstado().altura() + ") =");                    
                 int profundidad = Int32.Parse(Console.ReadLine());
                 Game.getEstado().porNivel(profundidad);
+				if(profundidad%2==0)
+				{
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("\nTurno de la IA\n");
+					Console.ResetColor();
+				}
+				else
+				{
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine("\nTurno del Humano\n");
+					Console.ResetColor();
+				}
 				break;
             }
         }
