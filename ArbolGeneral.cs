@@ -324,7 +324,6 @@ namespace tp1
 			}
 			catch (System.Exception)
 			{
-				Console.WriteLine("La secuencia ingresada es invalida");
 				current = new ArbolGeneral<int>(0);
 			}
 			//si la jugada es inválida, devolver un error.

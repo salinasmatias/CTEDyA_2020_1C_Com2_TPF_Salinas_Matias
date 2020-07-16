@@ -8,7 +8,7 @@ namespace juegoIA
 		public static void Main(string[] args)
 		{
 			string respuesta = "si";
-			while (respuesta == "si")
+			while (respuesta == "si" || respuesta =="Si" || respuesta == "SI" || respuesta=="sI")
 			{
 				Menu menu = new Menu();
             	menu.menuPrincipal();
@@ -19,7 +19,9 @@ namespace juegoIA
 				respuesta = Console.ReadLine();
 				Console.Clear();
 			}
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("Game Over.");
+			Console.ResetColor();
 		}
 	}
 }

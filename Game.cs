@@ -40,7 +40,9 @@ namespace juegoIA
 		private void printScreen()
 		{
 			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("Limite:" + limite.ToString());
+			Console.ResetColor();
 		}
 		
 		private void turn(Jugador jugador, Jugador oponente, List<int> naipes)
@@ -58,9 +60,13 @@ namespace juegoIA
 		private void printWinner()
 		{
 			if (!juegaHumano) {
+				Console.ForegroundColor = ConsoleColor.Blue;
 				Console.WriteLine("¡Ganaste!");
+				Console.ResetColor();
 			} else {
+				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine("Ganó la IA");
+				Console.ResetColor();
 			}
 			
 		}

@@ -29,6 +29,7 @@ namespace juegoIA
 		public override int descartarUnaCarta()
 		{
 			int carta = 0;
+			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.WriteLine("Naipes disponibles (Usuario):");
 			for (int i = 0; i < naipes.Count; i++) {
 				Console.Write(naipes[i].ToString());
@@ -36,6 +37,8 @@ namespace juegoIA
 					Console.Write(", ");
 				}
 			}
+			Console.ResetColor();
+			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("\n\nNaipes disponibles (IA):");
 			for (int i = 0; i < naipesComputer.Count; i++) {
 				Console.Write(naipesComputer[i].ToString());
@@ -43,18 +46,37 @@ namespace juegoIA
 					Console.Write(", ");
 				}
 			}
+			Console.ResetColor();
 		
 			Console.WriteLine();
 			if (!random_card) {
 				Console.Write("Ingrese naipe o consulta:");
 				string entrada = Console.ReadLine();
-				if(Char.IsLetter(entrada, 0))
-				{
-					consultas(entrada); //Si el valor de entrada es una opción válida de consultas, se ejecuta la consulta que corresponde.
-				}
-                
-                Int32.TryParse(entrada, out carta); //Sino, se intenta parsear el valor de entrada.
+				consultas(entrada); //Si el valor de entrada es una opción válida de consultas, se ejecuta la consulta que corresponde.
+				Int32.TryParse(entrada, out carta); //Sino, se intenta parsear el valor de entrada.
 				while (!naipes.Contains(carta)) {
+					//Console.WriteLine();
+					//Console.WriteLine("Limite:" + limite.ToString());
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine("Naipes disponibles (Usuario):");
+					for (int i = 0; i < naipes.Count; i++) {
+						Console.Write(naipes[i].ToString());
+						if (i<naipes.Count-1) {
+							Console.Write(", ");
+						}
+					}
+					Console.ResetColor();
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("\n\nNaipes disponibles (IA):");
+					for (int i = 0; i < naipesComputer.Count; i++) {
+						Console.Write(naipesComputer[i].ToString());
+						if (i<naipesComputer.Count-1) {
+							Console.Write(", ");
+						}
+					}
+					Console.ResetColor();
+		
+					Console.WriteLine();
 					Console.Write("Ingrese naipe o consulta:");
 					entrada = Console.ReadLine();
 
@@ -100,6 +122,26 @@ namespace juegoIA
                 while (condicion <= this.naipes.Count)
                 {
                     Menu menu = new Menu();
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine("Naipes disponibles (Usuario):");
+					for (int i = 0; i < naipes.Count; i++) {
+						Console.Write(naipes[i].ToString());
+						if (i<naipes.Count-1) {
+							Console.Write(", ");
+						}
+					}
+					Console.ResetColor();
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("\n\nNaipes disponibles (IA):");
+					for (int i = 0; i < naipesComputer.Count; i++) {
+						Console.Write(naipesComputer[i].ToString());
+						if (i<naipesComputer.Count-1) {
+							Console.Write(", ");
+						}
+					}
+					Console.ResetColor();
+		
+					Console.WriteLine();
                     menu.submenuB();
                     nuevacarta = int.Parse(Console.ReadLine());
 					if(nuevacarta == 13)
@@ -112,6 +154,10 @@ namespace juegoIA
 				if(!Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()).esHoja())
 				{
 					Game.getEstado().recorridoDeJugada(jugada, Game.getEstado()).recorridoDeCaminos();
+				}
+				else
+				{
+					Console.WriteLine("La secuencia ingresada es inválida.");
 				}
                 break;
 
